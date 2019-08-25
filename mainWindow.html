@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Things to do</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+</head>
+<body>
+  <nav>
+    <div class="green darken-2 nav-wrapper">
+      <a class="brand-logo center">Tasks</a>
+    </div>
+  </nav>
+
+  <ul></ul>
+
+  <script>
+    const electron = require('electron');
+    const {ipcRenderer} = electron;
+    const ul = document.querySelector('ul');
+    ipcRenderer.on('item:add', function(e, item){
+      ul.className = 'collection';
+      const a = document.createElement('a');
+      a.className = 'collection-item';
+      const itemText = document.createTextNode(item);
+      a.appendChild(itemText);
+      ul.appendChild(a);
+    });
+    ipcRenderer.on('item:clear', function(){
+      ul.className = '';
+      ul.innerHTML = '';
+    });
+    ul.addEventListener('dblclick', removeItem);
+    function removeItem(e){
+      event.target.remove();
+      if(ul.children.length == 0){
+        ul.className = '';
+      }
+    }
+  </script>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">Add the tasks that you have to do daily.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="http://luciomartinbruno.ddns.net">Lucio Martin Bruno</a></li>
+            <li><a class="grey-text text-lighten-3" href="https://github.com/LucioMartinBruno">Github</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Lucio Martin Bruno Berlin 2019
+      </div>
+    </div>
+  </footer>
+</html>
