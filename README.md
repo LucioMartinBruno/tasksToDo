@@ -1,6 +1,6 @@
 # tasksToDo
 
-![alt text](https://ibb.co/ypbm9J4)
+https://ibb.co/ypbm9J4
 
 Electron taskToDO Desktop App
 
