@@ -11,7 +11,7 @@ Installation
 
 Install the dependencies
 
-$ npm install
+$ npm install ( in the directory of the project )
 
 Serve
 
